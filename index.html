@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover Passport, Student Council and campus community events.">
+    <title>Campus Pulse | Student Events Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <nav aria-label="Main navigation">
+            <a href="#home" class="brand">Campus Pulse</a>
+
+            <ul>
+                <li><a href="#discover">Explore Events</a></li>
+                <li><a href="#calendar">Calendar</a></li>
+                <li><a href="#organisers">Organisers</a></li>
+            </ul>
+
+            <a href="#signup">Get Involved</a>
+        </nav>
+    </header>
+
+    <main id="home">
+
+        <section class="hero">
+            <p>THE STUDENT EVENTS HUB</p>
+
+            <h1>Campus life, all in one place.</h1>
+
+            <p>
+                Discover Passport sessions, Student Council programmes,
+                career workshops, cultural celebrations and campus fun.
+            </p>
+
+            <a href="#discover">Explore Events</a>
+        </section>
+
+        <section id="discover">
+            <h2>Discover What's Happening</h2>
+
+            <p>
+                Find educational opportunities, social activities
+                and events happening around campus.
+            </p>
+
+            <label for="searchInput">Search events</label>
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search by event or location..."
+            >
+
+            <div class="filters" aria-label="Event categories">
+                <button type="button" data-filter="All">All Events</button>
+                <button type="button" data-filter="Learning">Learning</button>
+                <button type="button" data-filter="Career">Career</button>
+                <button type="button" data-filter="Social">Social</button>
+                <button type="button" data-filter="Culture">Culture</button>
+                <button type="button" data-filter="Wellness">Wellness</button>
+            </div>
+
+            <label for="organiserFilter">Filter by organiser</label>
+            <select id="organiserFilter">
+                <option value="All">All Organisers</option>
+                <option value="Passport">Passport</option>
+                <option value="Student Council">Student Council</option>
+                <option value="Campus Community">Campus Community</option>
+            </select>
+
+            <p id="resultsCount" aria-live="polite">Events will appear here.</p>
+
+            <div id="eventGrid">
+                <!-- JavaScript will display event cards here. -->
+            </div>
+        </section>
+
+        <section id="calendar">
+            <h2>Upcoming Events</h2>
+
+            <table>
+                <caption>Campus events schedule</caption>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Event</th>
+                        <th scope="col">Organiser</th>
+                        <th scope="col">Time</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <th scope="row">October 13</th>
+                        <td>Study Skills Workshop</td>
+                        <td>Passport</td>
+                        <td>4:00 PM</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">October 15</th>
+                        <td>Student Ideas Forum</td>
+                        <td>Student Council</td>
+                        <td>5:30 PM</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">October 16</th>
+                        <td>Courtyard Sessions</td>
+                        <td>Student Council</td>
+                        <td>7:00 PM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="organisers">
+            <h2>Meet the Organisers</h2>
+
+            <article>
+                <h3>Passport</h3>
+                <p>
+                    Discover learning opportunities, personal development
+                    and career-readiness sessions.
+                </p>
+            </article>
+
+            <article>
+                <h3>Student Council</h3>
+                <p>
+                    Explore student forums, social events, cultural activities
+                    and campus-wide programmes.
+                </p>
+            </article>
+
+            <article>
+                <h3>Campus Community</h3>
+                <p>
+                    Find collaborative activities organised with campus clubs
+                    and student groups.
+                </p>
+            </article>
+        </section>
+
+        <section id="signup">
+            <h2>Stay in the Loop</h2>
+
+            <p>Choose the types of events you'd like to hear about.</p>
+
+            <form id="signupForm">
+                <div>
+                    <label for="studentName">Your name</label>
+                    <input
+                        type="text"
+                        id="studentName"
+                        name="studentName"
+                        required
+                        minlength="2"
+                    >
+                </div>
+
+                <div>
+                    <label for="studentEmail">Student email</label>
+                    <input
+                        type="email"
+                        id="studentEmail"
+                        name="studentEmail"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="interest">Your interests</label>
+                    <select id="interest" name="interest" required>
+                        <option value="">Choose an interest</option>
+                        <option value="Passport events">Passport events</option>
+                        <option value="Student Council events">Student Council events</option>
+                        <option value="Learning and career">Learning and career</option>
+                        <option value="Social and culture">Social and culture</option>
+                        <option value="Everything">Everything</option>
+                    </select>
+                </div>
+
+                <button type="submit">Sign Me Up</button>
+
+                <p id="formMessage" aria-live="polite"></p>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Campus Pulse. A student events hub concept.</p>
+        <a href="#home">Back to top</a>
+    </footer>
+
+</body>
+</html>
