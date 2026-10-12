@@ -97,4 +97,101 @@ function renderEvents(eventList) {
         `Showing ${eventList.length} events`;
 }
 
+
 renderEvents(events);
+
+// Keep track of the currently selected category.
+let activeCategory = "All";
+
+// Search events as the student types.
+const searchInput = document.querySelector("#searchInput");
+
+searchInput.addEventListener("input", function() {
+    filterEvents();
+});
+
+// Listen for clicks on the category buttons.
+const filterButtons = document.querySelectorAll("[data-filter]");
+
+filterButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        activeCategory = button.dataset.filter;
+
+        // Visually identify the selected category.
+        filterButtons.forEach(function(otherButton) {
+            otherButton.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        filterEvents();
+    });
+});
+
+// Filter by the selected organiser.
+const organiserFilter = document.querySelector("#organiserFilter");
+
+organiserFilter.addEventListener("change", function() {
+    filterEvents();
+});
+
+// Combine the search, category and organiser filters.
+function filterEvents() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const selectedOrganiser = organiserFilter.value;
+
+    const filteredEvents = events.filter(function(event) {
+        const matchesCategory =
+            activeCategory === "All" ||
+            event.category === activeCategory;
+
+        const matchesOrganiser =
+            selectedOrganiser === "All" ||
+            event.organiser === selectedOrganiser;
+
+        const searchableText =
+            `${event.title} ${event.organiser} ${event.category} ${event.location} ${event.description}`
+                .toLowerCase();
+
+        const matchesSearch = searchableText.includes(searchTerm);
+
+        return matchesCategory && matchesOrganiser && matchesSearch;
+    });
+
+    renderEvents(filteredEvents);
+}
+
+
+const signupForm = document.querySelector("#signupForm");
+const formMessage = document.querySelector("#formMessage");
+
+signupForm.addEventListener("submit", function(event) {
+    // Stop the browser from reloading the page.
+    event.preventDefault();
+
+    const name = document.querySelector("#studentName").value.trim();
+    const email = document.querySelector("#studentEmail").value.trim();
+    const interest = document.querySelector("#interest").value;
+
+    // Check that the student has entered the required details.
+    if (name.length < 2) {
+        formMessage.textContent = "Please enter your name.";
+        return;
+    }
+
+    if (!email.includes("@") || !email.includes(".")) {
+        formMessage.textContent = "Please enter a valid email.";
+        return;
+    }
+
+    if (interest === "") {
+        formMessage.textContent = "Please select an event interest.";
+        return;
+    }
+
+    // Display a confirmation message.
+    formMessage.textContent =
+        `Thanks, ${name}! Your interest in ${interest} has been recorded for this demo.`;
+
+    signupForm.reset();
+});
